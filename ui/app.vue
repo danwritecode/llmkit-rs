@@ -40,3 +40,28 @@ if (import.meta.client) {
   })
 }
 </script>
+
+<style>
+.overflow-x-scroll::-webkit-scrollbar {
+  height: 8px;
+}
+
+.overflow-x-scroll::-webkit-scrollbar-track {
+  background: rgb(23, 23, 23); /* neutral-950 */
+}
+
+.overflow-x-scroll::-webkit-scrollbar-thumb {
+  background: rgb(64, 64, 64); /* neutral-700 */
+  border-radius: 4px;
+}
+
+.overflow-x-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgb(82, 82, 82); /* neutral-600 */
+}
+
+/* Firefox scrollbar styling */
+.overflow-x-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(64, 64, 64) rgb(23, 23, 23); /* thumb and track */
+}
+</style>

@@ -1,3 +1,5 @@
+use std::{env, path::PathBuf};
+
 use axum::{
     http::StatusCode,
     response::{IntoResponse, Response},
@@ -50,10 +52,14 @@ pub mod utils;
 
 #[tokio::main]
 async fn main() -> Result<()> {
-    dotenv::dotenv().ok();
+    let mut path = PathBuf::from(env::var("CARGO_MANIFEST_DIR")?);
+    path.pop();
+    path.push(".env");
 
-    let database_url = std::env::var("DATABASE_URL")?;
-    let log_level = std::env::var("RUST_LOG").unwrap_or("info".to_string());
+    dotenv::from_path(path.as_path())?;
+
+    let database_url = env::var("DATABASE_URL")?;
+    let log_level = env::var("RUST_LOG").unwrap_or("info".to_string());
 
     tracing_subscriber::fmt().with_env_filter(log_level).init();
 
